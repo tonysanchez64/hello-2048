@@ -25,8 +25,8 @@ pipeline {
         stage('deploy') {
             steps {
                 sshagent(['ssh-amazon']) {
-			sh 'ssh -o "StrictHostKeyChecking no" ec2-user@34.255.205.246 docker-compose -f ~/hello-2048/docker-compose.yml pull'
-                        sh 'ssh ec2-user@34.255.205.246 docker-compose -f ~/hello-2048/docker-compose.yml up -d'
+			sh 'ssh -o "StrictHostKeyChecking no" ec2-user@34.255.205.246 docker-compose -f ./hello-2048/docker-compose.yml pull'
+                        sh 'ssh ec2-user@34.255.205.246 docker-compose -f ./hello-2048/docker-compose.yml up -d'
 
                 }        
             }
