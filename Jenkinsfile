@@ -6,12 +6,12 @@ pipeline {
     stages {
 	stage('build'){
 	    steps{
+		sh 'docker-compose build'
 		sh 'docker tag ghcr.io/tonysanchez64/hello-2048/hello-2048:latest ghcr.io/tonysanchez64/hello-2048/hello-2048:1.0.${BUILD_NUMBER}'
 	   }
 	}
         stage('pacakge'){
             steps {
-		sh 'docker-compose build'
                 withCredentials([string(credentialsId: 'Token_Github', variable:'CR_PAT')]) {
                     sh 'echo $CR_PAT | docker login ghcr.io -u tonysanchez64 --password-stdin'
                 }
