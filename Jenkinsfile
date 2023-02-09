@@ -6,7 +6,7 @@ pipeline {
     stages {
 	stage('build'){
 	    steps{
-		sh 'docker tag ghcr.io/tonysanchez64/hello-2048/hello-2048:lastest ghcr.io/tonysanchez64/hello-2048/hello-2048:1.0.${BUILD_NUMBER}'
+		sh 'docker tag ghcr.io/tonysanchez64/hello-2048/hello-2048:latest ghcr.io/tonysanchez64/hello-2048/hello-2048:1.0.${BUILD_NUMBER}'
 	   }
 	}
         stage('pacakge'){
