@@ -4,7 +4,11 @@ pipeline {
 	timestamps()
     }
     stages {
-
+	stage('build'){
+	    steps{
+		echo 'tag 1.0.$BUILD_NUMBER'	
+	   }
+	}
         stage('pacakge'){
             steps {
 		sh 'docker-compose build'
@@ -14,12 +18,12 @@ pipeline {
 		sh 'docker push ghcr.io/tonysanchez64/hello-2048/hello-2048:v1'
             }
         }
-        stage('Build') {
+        stage('deploy') {
             steps {
                 sshagent(['ssh-amazon']) {
                     sh """
-                        ssh -o "StrictHostKeyChecking no" ec2-user@34.255.205.246 docker pull ghcr.io/tonysanchez64/hello-2048/hello-2048:v1
-			ssh ec2-user@34.255.205.246 docker run --rm -d -p 80:80 ghcr.io/tonysanchez64/hello-2048/hello-2048:v1
+                        ssh -o "StrictHostKeyChecking no" ec2-user@34.255.205.246 docker-compose pull
+			ssh ec2-user@34.255.205.246 docker-compose up -d
                     """
                 }        
             }
