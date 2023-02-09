@@ -6,7 +6,7 @@ pipeline {
     stages {
 	stage('build'){
 	    steps{
-		echo 'tag 1.0.$BUILD_NUMBER'	
+		echo "tag 1.0.${BUILD_NUMBER}"	
 	   }
 	}
         stage('pacakge'){
