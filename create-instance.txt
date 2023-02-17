@@ -1,0 +1,1 @@
+aws ec2 run-instances --image-id ami-0b752bf1df193a6c4 --count 1 --instance-type t2.micro --key-name clave-lucatic --security-group-ids sg-0f3c5d809a2d46c67 --user-data file://cloudinit.sh --tag-specifications 'ResourceType=instance, Tags=[{Key=Name,Value=hello-aws1}]'
