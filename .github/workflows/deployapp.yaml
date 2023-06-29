@@ -1,0 +1,18 @@
+name: Deploy App to AWS
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-image:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Upload the image to ghrc.io
+          run: |
+            docker-compose build
+            docker login ghcr.io -u tonysanchez64 -p ${{ secrets.GITHUB_TOKEN }}
+            docker push ghcr.io/tonysanchez64/cloudapp/cloudapp:latest
+

@@ -2,7 +2,7 @@ version: '3'
 services:
   nginx2048:
     build: .
-    image: ghcr.io/tonysanchez64/hello-2048/hello-2048:latest
+    image: ghcr.io/tonysanchez64/cloudapp/cloudapp:latest
     ports:
       - "80:80"
 
